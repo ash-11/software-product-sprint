@@ -1,9 +1,41 @@
 #content {
   margin-left: auto;
   margin-right: auto;
-  width: 650px;
+  width: 60%;
 }
 
 #greeting-container {
   margin-top: 20px;
+}
+
+body {
+    background-image: url("../images/background.jpg");
+}
+
+.leftside{
+    margin-left: 25px;
+    margin-right: 10px;
+    width: 45%;
+    float: left;
+}
+
+.rightside{
+    margin-right: 25px;
+    margin-left: 10px;
+    width: 50%;
+    float: right;
+}
+
+.center{
+    text-align: center;
+}
+
+.leftSideLinks{
+    width: 50%;
+    float: left;
+}
+
+.rightSideLinks{
+    width: 50%;
+    float: right;
 }
