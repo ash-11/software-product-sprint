@@ -28,7 +28,7 @@ function addRandomGreeting() {
 }
 
 function getComments(){
-    fetch('/comments').then(response => response.json()).then((commentList) => {
+    fetch('/list-comments').then(response => response.json()).then((commentList) => {
         const comments = document.getElementById('comments');
         commentList.forEach((comment) => {
             comments.appendChild(createListElement(comment));
