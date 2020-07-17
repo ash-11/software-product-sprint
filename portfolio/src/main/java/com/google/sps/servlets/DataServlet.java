@@ -20,13 +20,89 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import java.util.ArrayList;
+import java.util.List;
+import com.google.gson.Gson;
+
+class Comment{
+
+    private String name;
+    private String commentText;
+
+    public Comment(String name, String commentText){
+        this.name = name;
+        this.commentText = commentText;
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public void setCommentText(String commentText){
+        this.commentText = commentText;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public String getCommentText(){
+        return commentText;
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if(o == null) return false;
+
+        if(o == this) return true;
+
+        if(!(o instanceof Comment)){
+            return false;
+        }
+
+        Comment that = (Comment) o;
+
+        if(this.name.equals(that.name) && this.commentText.equals(that.commentText)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    @Override
+    public int hashCode(){
+        int result = 17;
+        result = 31 * result + (this.name != null ? this.name.hashCode() : 0);
+        result = 31 * result + (this.commentText != null ? this.commentText.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString(){
+        return name + ": " + commentText;
+    }
+
+}
+
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
-@WebServlet("/data")
+@WebServlet("/comments")
 public class DataServlet extends HttpServlet {
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("text/html;");
-    response.getWriter().println("<h1>Hello world!</h1>");
-  }
+    private final List<Comment> commentList = new ArrayList<>();
+
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("application/json");
+        String json = new Gson().toJson(commentList);
+        response.getWriter().println(json);
+    }
+
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
+        String name = request.getParameter("name");
+        String commentText = request.getParameter("commentText");
+
+        commentList.add(new Comment(name, commentText));
+        response.sendRedirect("/index.html");
+    }
 }
