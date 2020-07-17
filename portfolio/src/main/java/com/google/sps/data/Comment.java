@@ -48,7 +48,7 @@ public class Comment{
 
         Comment that = (Comment) o;
 
-        if(this.name.equals(that.name) && this.commentText.equals(that.commentText)){
+        if(this.id == that.id && this.name.equals(that.name) && this.commentText.equals(that.commentText)){
             return true;
         }else{
             return false;
@@ -58,6 +58,7 @@ public class Comment{
     @Override
     public int hashCode(){
         int result = 17;
+        result = 31 * result + (int)id;
         result = 31 * result + (this.name != null ? this.name.hashCode() : 0);
         result = 31 * result + (this.commentText != null ? this.commentText.hashCode() : 0);
         return result;
@@ -65,7 +66,7 @@ public class Comment{
 
     @Override
     public String toString(){
-        return name + ": " + commentText;
+        return "{id: " + id + ", name: " + name + ", comment: " + commentText + "}";
     }
 
 }
