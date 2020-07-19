@@ -26,3 +26,18 @@ function addRandomGreeting() {
   const greetingContainer = document.getElementById('greeting-container');
   greetingContainer.innerText = greeting;
 }
+
+function getComments(){
+    fetch('/list-comments').then(response => response.json()).then((commentList) => {
+        const comments = document.getElementById('comments');
+        commentList.forEach((comment) => {
+            comments.appendChild(createListElement(comment));
+        });
+    });
+}
+
+function createListElement(comment) {
+    const liElement = document.createElement('li');
+    liElement.innerText = comment.name + ": " + comment.commentText;
+    return liElement;
+}

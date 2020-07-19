@@ -8,7 +8,7 @@
         <script src="script.js"></script>
     </head>
 
-    <body>
+    <body onload="getComments()">
 
         <div class="content">
             <div id="intro">
@@ -24,8 +24,8 @@
             <hr>
 
             <div class="experience">
-                <img class="imageOnRight" src="../images/sprinklrIcon.png" alt="Sprinklr">
                 <h2>Experience</h2>
+                <img class="imageOnRight" src="../images/sprinklrIcon.png" alt="Sprinklr">
                 <h3><b>Sprinklr</b> | Product Engineering Intern</h3>
                 <ul>
                     <li>Built a Twitter Rate Limit Monitoring system for monitoring the rate limits of a twitter-ads account.
@@ -99,7 +99,22 @@
             <br>
             <hr>
 
-        </div>
+            <div class="comments">
+                <h2>Comments</h2>
+                <ul id="comments"></ul>
 
+                <br>
+                <h3>Leave your comments here:</h3>
+                <form action="/new-comment" method="POST">
+                    <label for="name">Your Name: </label>
+                    <input type="text" name="name" style="width: 25%"><br><br>
+                    <label for="commentText">Comment: </label>
+                    <input type="text" name="commentText" style="width: 80%"><br><br>
+                    <input type="submit">
+                </form>
+                <br><br>
+            </div>
+
+        </div>
     </body>
 </html>
