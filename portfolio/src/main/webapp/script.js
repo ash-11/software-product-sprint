@@ -27,6 +27,11 @@ function addRandomGreeting() {
   greetingContainer.innerText = greeting;
 }
 
+function init(){
+    getComments();
+    getCommentForm();
+}
+
 function getComments(){
     fetch('/list-comments').then(response => response.json()).then((commentList) => {
         const comments = document.getElementById('comments');
@@ -40,4 +45,10 @@ function createListElement(comment) {
     const liElement = document.createElement('li');
     liElement.innerText = comment.name + ": " + comment.commentText;
     return liElement;
+}
+
+function getCommentForm(){
+    fetch('/comment-form').then(response => response.text()).then((commentForm) => {
+        document.getElementById('comment-form').innerHTML = commentForm;  
+    });
 }
